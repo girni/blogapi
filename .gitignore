@@ -1,0 +1,17 @@
+/.idea
+/.vscode
+/node_modules
+/public/hot
+/public/storage
+/public/apidoc/*
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+docker/www_logs/*
+docker/mysql-data/*
