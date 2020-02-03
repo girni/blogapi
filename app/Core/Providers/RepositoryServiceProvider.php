@@ -2,6 +2,12 @@
 
 namespace BlogApi\Core\Providers;
 
+use BlogApi\Blog\Repositories\ArticleRepositoryInterface;
+use BlogApi\Blog\Repositories\Eloquent\ArticleRepository;
+use BlogApi\Core\Repositories\Eloquent\Repository;
+use BlogApi\Core\Repositories\Eloquent\UserRepository;
+use BlogApi\Core\Repositories\EloquentRepositoryInterface;
+use BlogApi\Core\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -12,6 +18,7 @@ class RepositoryServiceProvider extends ServiceProvider
     protected static array $interfaces = [
         EloquentRepositoryInterface::class      => Repository::class,
         UserRepositoryInterface::class          => UserRepository::class,
+        ArticleRepositoryInterface::class       => ArticleRepository::class
     ];
 
     /**

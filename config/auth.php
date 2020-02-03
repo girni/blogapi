@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Boostcsgo\Core\Model\User::class,
+            'model' => BlogApi\Core\Model\User::class,
         ],
 
         // 'users' => [

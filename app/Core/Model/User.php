@@ -2,6 +2,7 @@
 
 namespace BlogApi\Core\Model;
 
+use BlogApi\Core\Enum\Role;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'reset_password_token'
     ];
 
     /**
@@ -57,5 +58,10 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    public function canAuthenticate()
+    {
+
     }
 }

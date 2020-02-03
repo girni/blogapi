@@ -9,10 +9,16 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 interface UserRepositoryInterface extends EloquentRepositoryInterface
 {
     /**
-     * @param int $limit
-     * @return LengthAwarePaginator
+     * @param string $email
+     * @return User|null
      */
-    public function findPaginated(int $limit = 20): LengthAwarePaginator;
+    public function findByEmail(string $email): ?User;
+
+    /**
+     * @param string $token
+     * @return User|null
+     */
+    public function findByResetPasswordToken(string $token): ?User;
 
     /**
      * @param array $data

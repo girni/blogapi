@@ -2,8 +2,11 @@
 
 namespace BlogApi\Core\Exceptions;
 
+use BlogApi\Core\Exceptions\AppException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -40,12 +43,27 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Exception $exception
+     *
+     * @return Response
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if ($exception instanceof AppException === false || $request->wantsJson() === false) {
+            return parent::render($request, $exception);
+        }
+
+        $response = [
+            'status'  => false,
+            'message' => $exception->getMessage()
+        ];
+        $status   = 400;
+
+        if ($this->isHttpException($exception)) {
+            $status = $exception->getStatusCode();
+        }
+
+        return response()->json($response, $status);
     }
 }

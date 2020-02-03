@@ -175,6 +175,7 @@ return [
         BlogApi\Core\Providers\EventServiceProvider::class,
         BlogApi\Core\Providers\RouteServiceProvider::class,
         BlogApi\Core\Providers\RepositoryServiceProvider::class,
+        BlogApi\Core\Providers\DependencyInjectionServiceProvider::class
     ],
 
     /*

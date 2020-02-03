@@ -19,15 +19,23 @@ class UserRepository extends Repository implements UserRepositoryInterface
         parent::__construct($model);
     }
 
+    /**
+     * @param string $email
+     * @return User|null
+     */
+    public function findByEmail(string $email): ?User
+    {
+        return $this->model->whereEmail($email)->first();
+    }
+
 
     /**
-     * @param int $limit
-     * @return LengthAwarePaginator
+     * @param string $token
+     * @return User|null
      */
-    public function findPaginated(int $limit = 20): LengthAwarePaginator
+    public function findByResetPasswordToken(string $token): ?User
     {
-        return $this->model
-            ->paginate($limit);
+        return $this->model->where('reset_password_token', $token)->first();
     }
 
     /**
